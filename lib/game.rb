@@ -1,4 +1,4 @@
-require_relative 'game_stats'
+require './lib/game_stats'
 
 class Game
   include GameStats
