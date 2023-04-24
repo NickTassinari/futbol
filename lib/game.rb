@@ -1,4 +1,5 @@
-require './lib/game_stats'
+require_relative 'game_stats'
+
 class Game
   include GameStats
   attr_reader :game_id,
