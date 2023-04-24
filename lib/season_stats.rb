@@ -1,5 +1,26 @@
 module SeasonStats
+
+  def winningest_coach(the_season)
+    season_game_teams = @game_teams.select{|game_team| game_team.season == the_season}
+    coach_wins = Hash.new(0)
+    coach_games = Hash.new(0)
+    season_game_teams.each do |game|
+      coach = game.head_coach
+      if game.result == 'WIN'
+        coach_wins[coach] += 1
+        coach_games[coach] += 1
+      else
+        coach_games[coach] += 1
+      end
+    end
+    win_statistic_by_coach = {}
+    coach_games.each do |coach, games|
+      win_statistic_by_coach[coach] = (coach_wins[coach].to_f).fdiv(games.to_f)
+    end
+    win_statistic_by_coach.max_by{ |coach, win_statistic| win_statistic}[0]
+  end
   
+
   def worst_coach(the_season)
     season_game_teams = @game_teams.select{|game_team| game_team.season == the_season}
     coach_losses = Hash.new(0)
@@ -17,12 +38,12 @@ module SeasonStats
         coach_games[coach] += 1
       end
     end
-    win_percentage_by_coach = {}
+    win_statistic_by_coach = {}
     coach_games.each do |coach, games|
       wins = games - coach_losses[coach] - coach_ties[coach]
-      win_percentage_by_coach[coach] = (wins.to_f).fdiv(games.to_f)
+      win_statistic_by_coach[coach] = (wins.to_f).fdiv(games.to_f)
     end
-    win_percentage_by_coach.min_by{ |coach, win_percentage| win_percentage}[0]
+    win_statistic_by_coach.min_by{ |coach, win_statistic| win_statistic}[0]
   end
 
   def most_accurate_team(season)

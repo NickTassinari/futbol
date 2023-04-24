@@ -30,8 +30,7 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.game_teams).to be_a Array
       expect(@stat_tracker.game_teams[0]).to be_a GameTeam
     end
-   
-   
+
     it 'game_teams have seasons by assignment' do 
       expect(@stat_tracker.game_teams[0].season).to eq('20122013')
     end
@@ -163,8 +162,14 @@ RSpec.describe StatTracker do
   #season_stats
 
   describe 'coach quality' do
+    it '#winningest_coach' do 
+      expect(@stat_tracker.winningest_coach("20122013")).to eq('Dan Lacroix')
+      expect(@stat_tracker.winningest_coach("20162017")).to eq('Bruce Cassidy')
+    end
+
     it "#worst_coach" do
-      expect(@stat_tracker.worst_coach("20122013")).to eq ('Martin Raymond')
+      expect(@stat_tracker.worst_coach("20122013")).to eq('Martin Raymond')
+      expect(@stat_tracker.worst_coach("20162017")).to eq('Dave Tippett')
     end
   end
 
