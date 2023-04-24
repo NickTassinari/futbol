@@ -1,5 +1,5 @@
-require './lib/league_stats'
-require './lib/season_stats'
+require_relative 'league_stats'
+require_relative 'season_stats'
 
 class GameTeam
     include LeagueStats, SeasonStats
