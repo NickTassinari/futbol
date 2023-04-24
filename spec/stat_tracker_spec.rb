@@ -133,6 +133,18 @@ RSpec.describe StatTracker do
 
   # season stats
 
+  describe 'coach quality' do
+    it '#winningest_coach' do 
+      expect(@stat_tracker.winningest_coach("20122013")).to eq('Dan Lacroix')
+      expect(@stat_tracker.winningest_coach("20162017")).to eq('Bruce Cassidy')
+    end
+  
+    it "#worst_coach" do
+      expect(@stat_tracker.worst_coach("20122013")).to eq('Martin Raymond')
+      expect(@stat_tracker.worst_coach("20162017")).to eq('Dave Tippett')
+    end
+  end
+
   describe '#accurate team' do
     it "names the team with the best ratio of shots to goals per season" do
       expect(@stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
@@ -157,21 +169,7 @@ RSpec.describe StatTracker do
     end
   end
   
-#helpers
-
-  #season_stats
-
-  describe 'coach quality' do
-    it '#winningest_coach' do 
-      expect(@stat_tracker.winningest_coach("20122013")).to eq('Dan Lacroix')
-      expect(@stat_tracker.winningest_coach("20162017")).to eq('Bruce Cassidy')
-    end
-
-    it "#worst_coach" do
-      expect(@stat_tracker.worst_coach("20122013")).to eq('Martin Raymond')
-      expect(@stat_tracker.worst_coach("20162017")).to eq('Dave Tippett')
-    end
-  end
+  #helpers
 
   describe 'helpers' do 
     it '#total_goals' do 
